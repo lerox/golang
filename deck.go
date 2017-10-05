@@ -11,7 +11,6 @@ import (
 
 // Create a new type of 'deck'
 // which is a slice of strings
-
 type deck []string
 
 func (d deck) print() { // receiver by convention 1-2 letters
