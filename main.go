@@ -23,4 +23,6 @@ func main() {
     pointer.updateFirstName("Jeeey")
     pointer.print()
     jey.print()
+
+    types()
 }
