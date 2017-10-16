@@ -22,8 +22,3 @@ func printGreeting(b bot) {
 func (spanishBot) getGreeting() string {
     return "Hola"
 }
-
-
-func interfaces() {
-
-}

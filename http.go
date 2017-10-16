@@ -16,9 +16,7 @@ func request() {
     }
 
     // bs := make([]byte, 99999)
-
     // resp.Body.Read(bs)
-
     // fmt.Println(string(bs))
 
     lw := logWriter{}
@@ -27,6 +25,7 @@ func request() {
 
 }
 
+// Duck typing, here we go!
 func (logWriter) Write(bs []byte) (int, error) {
     fmt.Println(string(bs))
     fmt.Println("Just wrote this many bytes:", len(bs))
