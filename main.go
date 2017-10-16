@@ -1,8 +1,14 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
+    // "runtime"
 )
+
+// func init() {
+//     runtime.GOMAXPROCS(runtime.NumCPU())
+//     fmt.Println(runtime.NumCPU())
+// }
 
 func main() {
     alex := person{
@@ -37,4 +43,14 @@ func main() {
     types()
 
     mapExample()
+
+    eb := englishBot{}
+    sb := spanishBot{}
+
+    printGreeting(eb)
+    printGreeting(sb)
+
+    request()
+
+    statusChecker()
 }
