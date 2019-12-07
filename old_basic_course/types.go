@@ -1,5 +1,5 @@
 // value types & reference types
-package main
+package old_basic_course
 
 import "fmt"
 

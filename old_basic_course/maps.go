@@ -1,4 +1,4 @@
-package main
+package old_basic_course
 
 import "fmt"
 

@@ -1,6 +1,8 @@
-package main
+package old_basic_course
 
-import "testing"
+import (
+    "testing"
+)
 import "os"
 
 func TestNewDeck(t *testing.T) {
