@@ -2,6 +2,8 @@ package main
 
 import (
     "fmt"
+    "github.com/lerox/golang/old_basic_course"
+
     // "runtime"
 )
 
@@ -11,10 +13,10 @@ import (
 // }
 
 func main() {
-    alex := person{
+    alex := old_basic_course.person{
         firstName: "alex",
         lastName:  "foo bar",
-        contactInfo: contactInfo{
+        contactInfo: old_basic_course.contactInfo{
             email:   "hi@ho.com",
             zipCode: 12333,
         },
@@ -22,7 +24,7 @@ func main() {
 
     alex.print()
 
-    var jey person
+    var jey old_basic_course.person
     jey.print() // this print "zero values"
     jey.firstName = "hey"
     jey.lastName = "anderson"
@@ -40,17 +42,17 @@ func main() {
     pointer.print()
     jey.print()
 
-    types()
+    old_basic_course.types()
 
-    mapExample()
+    old_basic_course.mapExample()
 
-    eb := englishBot{}
-    sb := spanishBot{}
+    eb := old_basic_course.englishBot{}
+    sb := old_basic_course.spanishBot{}
 
-    printGreeting(eb)
-    printGreeting(sb)
+    old_basic_course.printGreeting(eb)
+    old_basic_course.printGreeting(sb)
 
-    request()
+    old_basic_course.request()
 
-    statusChecker()
+    old_basic_course.statusChecker()
 }
