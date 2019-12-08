@@ -1,24 +1,24 @@
 package old_basic_course
 
 import (
-    "fmt"
+	"fmt"
 )
 
 type bot interface {
-    getGreeting() string
+	getGreeting() string
 }
 
-type englishBot struct {}
-type spanishBot struct {}
+type englishBot struct{}
+type spanishBot struct{}
 
 func (englishBot) getGreeting() string {
-    return "Hi"
+	return "Hi"
 }
 
 func printGreeting(b bot) {
-    fmt.Println(b.getGreeting())
+	fmt.Println(b.getGreeting())
 }
 
 func (spanishBot) getGreeting() string {
-    return "Hola"
+	return "Hola"
 }
