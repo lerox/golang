@@ -17,14 +17,14 @@ func MergeSort(data []int) []int {
 	middle := int(math.Floor(float64(len(data) / 2)))
 
 	left := make([]int, middle)
-	right := make([]int, len(data) - middle)
+	right := make([]int, len(data)-middle)
 
 	for i := 0; i < middle; i++ {
 		left[i] = data[i]
 	}
 
-	for j := 0; j < len(data) - middle; j++ {
-		right[j] = data[j + middle]
+	for j := 0; j < len(data)-middle; j++ {
+		right[j] = data[j+middle]
 	}
 
 	lSorted := MergeSort(left)
@@ -34,7 +34,7 @@ func MergeSort(data []int) []int {
 }
 
 func merge(data []int, left []int, right []int) []int {
-	var i,j,k int
+	var i, j, k int
 
 	for i < len(left) && j < len(right) {
 		if left[i] < right[j] {
