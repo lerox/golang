@@ -2,19 +2,20 @@ package sorting
 
 // BubbleSort algorithm implementation
 func BubbleSort(data []int) []int {
-	loop := true
 
-	for loop {
-		loop = false
+	for j := len(data)-1; j>0; j-- {
 
-		for i := 0; i < len(data) - 1; i++ {
-			if data[i+1] < data[i] {
-				bkp := data[i]
-				data[i] = data[i+1]
-				data[i+1] = bkp
+		alreadySorted := true
 
-				loop = true
+		for i := 0; i < j; i++ {
+			if data[i] > data[i+1] {
+				alreadySorted = false // I swapped, so...
+				data[i], data[i+1] = data[i+1], data[i]
 			}
+		}
+
+		if alreadySorted {
+			break
 		}
 	}
 
