@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 GO_FMT_OUTPUT=$(gofmt -l .)
 if [ -z "${GO_FMT_OUTPUT}" ]; then
   exit 0
