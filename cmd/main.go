@@ -3,7 +3,6 @@ package main
 import (
 	// "fmt"
 	"github.com/lerox/golang/old_basic_course_2017"
-
 	//"github.com/lerox/golang/sorting"
 )
 
