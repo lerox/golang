@@ -37,3 +37,25 @@ func TestMergeSortWithSomeRepeatedElements(t *testing.T) {
 		t.Errorf("MergeSort is returning %v and we expect %v", result, expected)
 	}
 }
+
+func TestMergeSortWithEmptySlice(t *testing.T) {
+	var expected []int
+
+	var unordered []int
+	result := MergeSort(unordered)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("We expected %v but we got %v", expected, result)
+	}
+}
+
+func TestMergeSortWithJustOneElement(t *testing.T) {
+	expected := []int{1}
+
+	unordered := []int{1}
+	result := MergeSort(unordered)
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("We expected %v but we got %v", expected, result)
+	}
+}
