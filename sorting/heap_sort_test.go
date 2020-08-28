@@ -1,18 +1,20 @@
 package sorting
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
 
-type TestValue struct {
+type AddDataProvider struct {
 	input    int
 	previous []int
 	expected []int
 }
 
 func TestHeap_Add(t *testing.T) {
-	testValues := []TestValue{
+
+	testValues := []AddDataProvider{
 		// 50
 		{input: 50, previous: []int{}, expected: []int{50}},
 
@@ -65,59 +67,58 @@ func TestHeap_Add(t *testing.T) {
 	}
 }
 
-// TODO
+type RemoveDataProvider struct {
+	previous []int
+	expected []int
+}
 
-//func TestHeapSortWithSuccess(t *testing.T) {
-//	expected := []int{1, 7, 77, 90, 9999, 88888}
-//
-//	unordered := []int{90, 7, 1, 9999, 88888, 77}
-//	result := HeapSort(unordered)
-//
-//	if !reflect.DeepEqual(expected, result) {
-//		t.Errorf("HeapSort is returning %v and we expect %v", result, expected)
-//	}
-//}
+func TestMaxHeap_Remove(t *testing.T) {
 
-//func TestHeapSortWithAnAlreadySortedSlice(t *testing.T) {
-//	expected := []int{1, 7, 77, 90, 9999, 88888}
-//
-//	sorted := []int{1, 7, 77, 90, 9999, 88888}
-//	result := HeapSort(sorted)
-//
-//	if !reflect.DeepEqual(expected, result) {
-//		t.Errorf("HeapSort is returning %v and we expect %v", result, expected)
-//	}
-//}
-//
-//func TestHeapSortWithSomeRepeatedElements(t *testing.T) {
-//	expected := []int{1, 7, 77, 77, 90, 123, 123, 9999, 88888}
-//
-//	unordered := []int{90, 7, 1, 77, 123, 9999, 123, 88888, 77}
-//	result := HeapSort(unordered)
-//
-//	if !reflect.DeepEqual(expected, result) {
-//		t.Errorf("HeapSort is returning %v and we expect %v", result, expected)
-//	}
-//}
-//
-//func TestHeapSortWithEmptySlice(t *testing.T) {
-//	var expected []int
-//
-//	var unordered []int
-//	result := HeapSort(unordered)
-//
-//	if !reflect.DeepEqual(expected, result) {
-//		t.Errorf("We expected %v but we got %v", expected, result)
-//	}
-//}
-//
-//func TestHeapSortWithJustOneElement(t *testing.T) {
-//	expected := []int{1}
-//
-//	unordered := []int{1}
-//	result := HeapSort(unordered)
-//
-//	if !reflect.DeepEqual(expected, result) {
-//		t.Errorf("We expected %v but we got %v", expected, result)
-//	}
-//}
+	expectedResults := []RemoveDataProvider{
+
+		{previous: []int{}, expected: []int{}},
+		//  100
+		//  /
+		// 50
+		{previous: []int{100, 50}, expected: []int{50, 0}},
+
+		//  100
+		//  / \
+		// 20  60
+		{previous: []int{100, 20, 60}, expected: []int{60, 20, 0}},
+
+		//  100
+		//  /  \
+		// 60  20
+		{previous: []int{100, 60, 20}, expected: []int{60, 20, 0}},
+
+		//     100
+		//     /  \
+		//   60   20
+		//  / \
+		// 1  30
+		{previous: []int{100, 60, 20, 1, 30}, expected: []int{60, 30, 20, 1, 0}},
+
+		//     100
+		//     / \
+		//   60   20
+		//  / \  /  \
+		// 1  30 5  10
+		{previous: []int{100, 60, 20, 1, 30, 5, 10}, expected: []int{60, 30, 20, 1, 10, 5, 0}},
+	}
+
+	for k, i := range expectedResults {
+		maxHeap := MaxHeap{}
+		maxHeap.data = i.previous
+
+		result := maxHeap.Remove()
+
+		if !reflect.DeepEqual(i.expected, result) {
+			t.Errorf(
+				fmt.Sprintf(
+					"We got an error in execution %d we expected %v and we got %v", k, i.expected, result,
+				),
+			)
+		}
+	}
+}
