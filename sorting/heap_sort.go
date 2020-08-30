@@ -1,14 +1,22 @@
 package sorting
 
-import "math"
+import (
+	"errors"
+	"math"
+)
 
 // Heap struct
 type MaxHeap struct {
 	data []int
 }
 
+// NewMaxHeap creates a new MaxHeap
+func NewMaxHeap(data []int) *MaxHeap {
+	return &MaxHeap{data: data}
+}
+
 // Add an element to MaxHeap
-func (h *MaxHeap) Add(i int) []int {
+func (h *MaxHeap) Add(i int) {
 	newElemPos := len(h.data)
 
 	h.data = append(h.data, i)
@@ -26,8 +34,6 @@ func (h *MaxHeap) Add(i int) []int {
 
 		parentPos = getParentPos(newElemPos)
 	}
-
-	return h.data
 }
 
 func getParentPos(newElemPos int) int {
@@ -35,10 +41,10 @@ func getParentPos(newElemPos int) int {
 }
 
 // Remove an element from MaxHeap
-func (h *MaxHeap) Remove() []int {
+func (h *MaxHeap) Remove() (int, error) {
 
 	if len(h.data) < 1 {
-		return []int{}
+		return 0, errors.New("error: cant remove from an empty MaxHeap")
 	}
 
 	// context: it removes from top & picks last element on the heap (array|slice) to replace it
@@ -48,13 +54,14 @@ func (h *MaxHeap) Remove() []int {
 	// it can be: O(1) ~ O(log n)
 
 	lastPos := len(h.data) - 1
+	top := h.data[0]
 
 	h.data[0] = h.data[lastPos]
 	h.data[lastPos] = 0
 
 	h.checkChildren(0)
 
-	return h.data
+	return top, nil
 }
 
 func (h *MaxHeap) checkChildren(pos int) {
@@ -78,12 +85,41 @@ func (h *MaxHeap) checkChildren(pos int) {
 	}
 }
 
-// MaxHeapSort algorithm implementation
-func MaxHeapSort(data []int) []int {
+// Heapify transforms a complete binary tree into a MaxHeap
+func (h *MaxHeap) Heapify() []int {
 
-	// TODO
+	// scan it and adjust, from left to right
+	// it's O(n)
 
-	// data = [50, 15, 10, 30]
+	for i := len(h.data) - 1; i >= 0; i-- {
+		h.adjust(i)
+	}
 
-	return data
+	return h.data
+}
+
+func (h *MaxHeap) adjust(value int) {
+
+	leftChildPos := (value * 2) + 1
+	rightChildPos := (value * 2) + 2
+
+	lastElemPos := len(h.data) - 1
+
+	if leftChildPos > lastElemPos {
+		return
+	}
+
+	var higherChildrenPos int
+
+	if rightChildPos > lastElemPos || h.data[rightChildPos] < h.data[leftChildPos] {
+		higherChildrenPos = leftChildPos
+	} else {
+		higherChildrenPos = rightChildPos
+	}
+
+	if h.data[higherChildrenPos] > h.data[value] {
+		h.data[higherChildrenPos], h.data[value] = h.data[value], h.data[higherChildrenPos]
+
+		h.adjust(higherChildrenPos)
+	}
 }
